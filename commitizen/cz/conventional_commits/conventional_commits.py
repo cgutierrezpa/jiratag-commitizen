@@ -101,6 +101,14 @@ class ConventionalCommitsCz(BaseCommitizen):
             },
             {
                 "type": "input",
+                "name": "issue",
+                "message": (
+                    "JIRA Issue. Code of the related issue in JIRA. "
+                    "Must follow the format `STRING-NUMBER` with capital letters. E.g: EXAMPLE-123:\n"
+                ),
+            },
+            {
+                "type": "input",
                 "name": "subject",
                 "filter": parse_subject,
                 "message": (
@@ -137,6 +145,7 @@ class ConventionalCommitsCz(BaseCommitizen):
         prefix = answers["prefix"]
         scope = answers["scope"]
         subject = answers["subject"]
+        issue = answers["issue"]
         body = answers["body"]
         footer = answers["footer"]
         is_breaking_change = answers["is_breaking_change"]
@@ -145,6 +154,8 @@ class ConventionalCommitsCz(BaseCommitizen):
             scope = f"({scope})"
         if is_breaking_change:
             body = f"BREAKING CHANGE: {body}"
+        if issue:
+            subject = f"{issue} - {subject}"
         if body:
             body = f"\n\n{body}"
         if footer:
@@ -165,7 +176,7 @@ class ConventionalCommitsCz(BaseCommitizen):
 
     def schema(self) -> str:
         return (
-            "<type>(<scope>): <subject>\n"
+            "<type>(<scope>): <issue> - <subject>\n"
             "<BLANK LINE>\n"
             "(BREAKING CHANGE: )<body>\n"
             "<BLANK LINE>\n"

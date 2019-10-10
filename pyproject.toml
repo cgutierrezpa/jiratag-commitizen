@@ -1,5 +1,5 @@
 [tool.commitizen]
-version = "1.5.1"
+version = "0.1.0"
 tag_format = "v$version"
 files = [
   "pyproject.toml:version",
@@ -28,14 +28,14 @@ exclude = '''
 '''
 
 [tool.poetry]
-name = "commitizen"
-version = "1.5.1"
+name = "jiratag-commitizen"
+version = "0.1.0"
 description = "Python commitizen client tool"
 authors = ["Santiago Fraire <santiwilly@gmail.com>"]
 license = "MIT"
-keywords = ["commitizen", "conventional", "commits", "git"]
+keywords = ["commitizen", "conventional", "commits", "git", "jira"]
 readme = "README.rst"
-homepage = "https://github.com/woile/commitizen"
+homepage = "https://github.com/cgutierrezpa/jiratag-commitizen"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.6",
