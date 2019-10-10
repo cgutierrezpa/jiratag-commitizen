@@ -8,7 +8,7 @@ Add an entry to `pyproject.toml`. Recommended for **python** projects.
 
     [tool.commitizen]
     name = "cz_conventional_commits"
-    version = "0.1.1"
+    version = "0.1.2"
     files = [
         "src/__version__.py",
         "pyproject.toml:version"
@@ -23,7 +23,7 @@ Recommended for **other languages** projects (js, go, etc).
 
     [commitizen]
     name = cz_conventional_commits
-    version = 0.1.1
+    version = 0.1.2
     files = [
         "src/__version__.py",
         "pyproject.toml:version"

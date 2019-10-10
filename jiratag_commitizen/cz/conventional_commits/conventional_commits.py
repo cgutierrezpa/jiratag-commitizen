@@ -163,6 +163,7 @@ class ConventionalCommitsCz(BaseCommitizen):
         if is_breaking_change:
             body = f"BREAKING CHANGE: {body}"
         if jira_project_code:
+            issue_number = answers["issue_number"]
             subject = f"{jira_project_code}-{issue_number} | {subject}"
         if body:
             body = f"\n\n{body}"
