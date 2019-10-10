@@ -101,10 +101,18 @@ class ConventionalCommitsCz(BaseCommitizen):
             },
             {
                 "type": "input",
-                "name": "issue",
+                "name": "jira_project_code",
                 "message": (
-                    "JIRA Issue. Code of the related issue in JIRA. "
-                    "Must follow the format `STRING-NUMBER` with capital letters. E.g: EXAMPLE-123:\n"
+                    "JIRA Project. Code of the project where the issue issue in JIRA."
+                    "It is usually an uppercase string code (we will uppercase them for you). E.g: AT, MCSW, PAN\n"
+                ),
+            },
+            {
+                "type": "input",
+                "name": "issue_number",
+                "message": (
+                    "JIRA Issue Number. The number that follows the project code."
+                    "E.g: EXAMPLE-123 will be issue number 123 in project EXAMPLE\n"
                 ),
             },
             {
@@ -145,7 +153,7 @@ class ConventionalCommitsCz(BaseCommitizen):
         prefix = answers["prefix"]
         scope = answers["scope"]
         subject = answers["subject"]
-        issue = answers["issue"]
+        jira_project_code = answers["jira_project_code"]
         body = answers["body"]
         footer = answers["footer"]
         is_breaking_change = answers["is_breaking_change"]
@@ -154,8 +162,8 @@ class ConventionalCommitsCz(BaseCommitizen):
             scope = f"({scope})"
         if is_breaking_change:
             body = f"BREAKING CHANGE: {body}"
-        if issue:
-            subject = f"{issue} - {subject}"
+        if jira_project_code:
+            subject = f"{jira_project_code}-{issue_number} | {subject}"
         if body:
             body = f"\n\n{body}"
         if footer:
@@ -176,7 +184,7 @@ class ConventionalCommitsCz(BaseCommitizen):
 
     def schema(self) -> str:
         return (
-            "<type>(<scope>): <issue> - <subject>\n"
+            "<type>(<scope>): <issue> | <subject>\n"
             "<BLANK LINE>\n"
             "(BREAKING CHANGE: )<body>\n"
             "<BLANK LINE>\n"
