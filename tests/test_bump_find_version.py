@@ -4,7 +4,7 @@ from commitizen.bump import generate_version
 from packaging.version import Version
 
 simple_flow = [
-    (("0.1.0", "PATCH", None), "0.1.1"),
+    (("0.1.1", "PATCH", None), "0.1.1"),
     (("0.1.1", "MINOR", None), "0.2.0"),
     (("0.2.0", "MINOR", None), "0.3.0"),
     (("0.3.0", "PATCH", None), "0.3.1"),

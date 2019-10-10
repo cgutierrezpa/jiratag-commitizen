@@ -31,7 +31,7 @@ def create_file_and_commit(message: str, filename: Optional[str] = None):
 
 def test_bump_command(mocker, create_project):
     with open("./pyproject.toml", "w") as f:
-        f.write("[tool.commitizen]\n" 'version="0.1.0"')
+        f.write("[tool.commitizen]\n" 'version="0.1.1"')
 
     cmd.run("git init")
 
