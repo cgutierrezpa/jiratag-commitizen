@@ -1,5 +1,5 @@
 import os
-from commitizen.cz.base import BaseCommitizen
+from jiratag_commitizen.cz.base import BaseCommitizen
 
 
 __all__ = ["JiraSmartCz"]

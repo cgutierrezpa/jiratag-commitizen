@@ -1,12 +1,12 @@
-from commitizen import BaseCommitizen, out
-from commitizen.cz import registry
+from jiratag_commitizen import BaseCommitizen, out
+from jiratag_commitizen.cz import registry
 
 
 NO_COMMITIZEN_FOUND = 2
 
 
 def commiter_factory(config: dict) -> BaseCommitizen:
-    """Return the correct commitizen existing in the registry."""
+    """Return the correct jiratag_commitizen existing in the registry."""
     name: str = config["name"]
     try:
         _cz = registry[name](config)

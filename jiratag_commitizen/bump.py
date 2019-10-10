@@ -4,7 +4,7 @@ from itertools import zip_longest
 from string import Template
 from packaging.version import Version
 from typing import List, Optional, Union
-from commitizen.defaults import (
+from jiratag_commitizen.defaults import (
     MAJOR,
     MINOR,
     PATCH,

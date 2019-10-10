@@ -1,5 +1,5 @@
-from commitizen import out
-from commitizen.cz import registry
+from jiratag_commitizen import out
+from jiratag_commitizen.cz import registry
 
 
 class ListCz:

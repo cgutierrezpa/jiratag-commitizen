@@ -1,6 +1,6 @@
 import os
 from tempfile import NamedTemporaryFile
-from commitizen import cmd
+from jiratag_commitizen import cmd
 
 
 def tag(tag: str):

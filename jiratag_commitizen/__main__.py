@@ -1,4 +1,4 @@
-from commitizen.cli import main
+from jiratag_commitizen.cli import main
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 import os
-from commitizen.cz.base import BaseCommitizen
-from commitizen import defaults
+from jiratag_commitizen.cz.base import BaseCommitizen
+from jiratag_commitizen import defaults
 __all__ = ["ConventionalCommitsCz"]
 
 

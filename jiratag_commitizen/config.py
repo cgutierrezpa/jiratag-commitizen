@@ -6,7 +6,7 @@ from typing import Optional
 from pathlib import Path
 from tomlkit import parse, exceptions
 
-from commitizen import defaults
+from jiratag_commitizen import defaults
 
 
 class Config:
@@ -40,13 +40,13 @@ def read_pyproject_conf(data: str) -> dict:
     """We expect to have a section in pyproject looking like
 
     ```
-    [tool.commitizen]
+    [tool.jiratag_commitizen]
     name = "cz_conventional_commits"
     ```
     """
     doc = parse(data)
     try:
-        return doc["tool"]["commitizen"]
+        return doc["tool"]["jiratag_commitizen"]
     except exceptions.NonExistentKey:
         return {}
 
@@ -55,10 +55,10 @@ def read_raw_parser_conf(data: str) -> dict:
     """We expect to have a section like this
 
     ```
-    [commitizen]
+    [jiratag_commitizen]
     name = cz_jira
     files = [
-        "commitizen/__version__.py",
+        "jiratag_commitizen/__version__.py",
         "pyproject.toml"
         ]  # this tab at the end is important
     ```
@@ -66,7 +66,7 @@ def read_raw_parser_conf(data: str) -> dict:
     config = configparser.ConfigParser(allow_no_value=True)
     config.read_string(data)
     try:
-        _data: dict = dict(config["commitizen"])
+        _data: dict = dict(config["jiratag_commitizen"])
         if "files" in _data:
             files = _data["files"]
             _f = json.loads(files)
@@ -84,7 +84,7 @@ def load_global_conf() -> dict:
     if not os.path.exists(global_cfg):
         return {}
 
-    # global conf doesnt make sense with commitizen bump
+    # global conf doesnt make sense with jiratag_commitizen bump
     # so I'm deprecating it and won't test it
     message = (
         "Global conf will be deprecated in next major version. "
@@ -139,13 +139,13 @@ def set_key(key: str, value: str) -> dict:
     if "toml" in _conf.path:
         with open(_conf.path, "r") as f:
             parser = parse(f.read())
-        parser["tool"]["commitizen"][key] = value
+        parser["tool"]["jiratag_commitizen"][key] = value
         with open(_conf.path, "w") as f:
             f.write(parser.as_string())
     else:
         parser = configparser.ConfigParser()
         parser.read(_conf.path)
-        parser["commitizen"][key] = value
+        parser["jiratag_commitizen"][key] = value
         with open(_conf.path, "w") as f:
             parser.write(f)
 

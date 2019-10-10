@@ -1,7 +1,7 @@
 import logging
 import logging.config
 from colorama import init
-from commitizen.cz.base import BaseCommitizen
+from jiratag_commitizen.cz.base import BaseCommitizen
 
 
 init()
@@ -19,7 +19,7 @@ LOGGING = {
         }
     },
     "loggers": {
-        "commitizen": {"handlers": ["default"], "level": "INFO", "propagate": True}
+        "jiratag_commitizen": {"handlers": ["default"], "level": "INFO", "propagate": True}
     },
 }
 

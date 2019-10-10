@@ -1,5 +1,5 @@
 import questionary
-from commitizen import factory, out, git
+from jiratag_commitizen import factory, out, git
 
 
 NO_ANSWERS = 5

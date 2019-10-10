@@ -1,4 +1,4 @@
-from commitizen import factory, out
+from jiratag_commitizen import factory, out
 
 
 class Info:

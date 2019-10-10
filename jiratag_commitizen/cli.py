@@ -7,8 +7,8 @@ import warnings
 from decli import cli
 from pathlib import Path
 from configparser import RawConfigParser, NoSectionError
-from commitizen import defaults, commands, out, config
-from commitizen.__version__ import __version__
+from jiratag_commitizen import defaults, commands, out, config
+from jiratag_commitizen.__version__ import __version__
 
 
 logger = logging.getLogger(__name__)
@@ -22,11 +22,11 @@ data = {
     "formatter_class": argparse.RawDescriptionHelpFormatter,
     "arguments": [
         {"name": "--debug", "action": "store_true", "help": "use debug mode"},
-        {"name": ["-n", "--name"], "help": "use the given commitizen"},
+        {"name": ["-n", "--name"], "help": "use the given jiratag_commitizen"},
         {
             "name": ["--version"],
             "action": "store_true",
-            "help": "get the version of the installed commitizen",
+            "help": "get the version of the installed jiratag_commitizen",
         },
     ],
     "subcommands": {
@@ -34,7 +34,7 @@ data = {
         "commands": [
             {
                 "name": "ls",
-                "help": "show available commitizens",
+                "help": "show available jiratag_commitizens",
                 "func": commands.ListCz,
             },
             {
@@ -119,7 +119,7 @@ def main():
             "Debug will be deprecated in next major version. "
             "Please remove it from your scripts"
         )
-        logging.getLogger("commitizen").setLevel(logging.DEBUG)
+        logging.getLogger("jiratag_commitizen").setLevel(logging.DEBUG)
 
     if args.version:
         out.line(__version__)

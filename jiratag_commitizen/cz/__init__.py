@@ -1,7 +1,7 @@
 import importlib
 import pkgutil
-from commitizen.cz.conventional_commits import ConventionalCommitsCz
-from commitizen.cz.jira import JiraSmartCz
+from jiratag_commitizen.cz.conventional_commits import ConventionalCommitsCz
+from jiratag_commitizen.cz.jira import JiraSmartCz
 
 registry = {"cz_conventional_commits": ConventionalCommitsCz, "cz_jira": JiraSmartCz}
 plugins = {
