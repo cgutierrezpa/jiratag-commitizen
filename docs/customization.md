@@ -75,7 +75,7 @@ from setuptools import setup
 
 setup(
     name='JiraCommitizen',
-    version='0.1.3',
+    version='0.1.4',
     py_modules=['cz_jira'],
     license='MIT',
     long_description='this is a long description',

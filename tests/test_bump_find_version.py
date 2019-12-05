@@ -4,8 +4,8 @@ from commitizen.bump import generate_version
 from packaging.version import Version
 
 simple_flow = [
-    (("0.1.3", "PATCH", None), "0.1.3"),
-    (("0.1.3", "MINOR", None), "0.2.0"),
+    (("0.1.4", "PATCH", None), "0.1.4"),
+    (("0.1.4", "MINOR", None), "0.2.0"),
     (("0.2.0", "MINOR", None), "0.3.0"),
     (("0.3.0", "PATCH", None), "0.3.1"),
     (("0.3.0", "PATCH", "alpha"), "0.3.1a0"),
@@ -30,8 +30,8 @@ simple_flow = [
 
 # this cases should be handled gracefully
 unexpected_cases = [
-    (("0.1.3rc0", None, "alpha"), "0.1.3a0"),
-    (("0.1.3b1", None, "alpha"), "0.1.3a0"),
+    (("0.1.4rc0", None, "alpha"), "0.1.4a0"),
+    (("0.1.4b1", None, "alpha"), "0.1.4a0"),
 ]
 
 weird_cases = [
@@ -48,8 +48,8 @@ weird_cases = [
 
 # test driven development
 tdd_cases = [
-    (("0.1.3", "PATCH", None), "0.1.3"),
-    (("0.1.3", "MINOR", None), "0.2.0"),
+    (("0.1.4", "PATCH", None), "0.1.4"),
+    (("0.1.4", "MINOR", None), "0.2.0"),
     (("2.1.1", "MAJOR", None), "3.0.0"),
     (("0.9.0", "PATCH", "alpha"), "0.9.1a0"),
     (("0.9.0", "MINOR", "alpha"), "0.10.0a0"),
