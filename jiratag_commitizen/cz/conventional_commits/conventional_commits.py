@@ -7,6 +7,11 @@ __all__ = ["ConventionalCommitsCz"]
 class NoSubjectException(Exception):
     ...
 
+class NaNException(Exception):
+    ...
+
+class NeedIssueCode(Exception):
+    ...
 
 def parse_scope(text):
     if not text:
@@ -24,10 +29,21 @@ def parse_subject(text):
         text = text.strip(".").strip()
 
     if not text:
-        raise NoSubjectException
+        raise NoSubjectException("Subject is a required field")
 
     return text
 
+def parse_confirm(text) -> bool:
+    import re
+
+    regex = r"(yes|ye|y)"
+    return bool(re.match(regex, text, re.IGNORECASE))
+
+def parse_number(text):
+    if text and not str.isdigit(text):
+        raise NaNException("Input must be a NUMBER")
+    
+    return text
 
 class ConventionalCommitsCz(BaseCommitizen):
     bump_pattern = defaults.bump_pattern
@@ -103,15 +119,16 @@ class ConventionalCommitsCz(BaseCommitizen):
                 "type": "input",
                 "name": "jira_project_code",
                 "message": (
-                    "JIRA Project. Code of the project where the issue issue in JIRA."
+                    "JIRA Project. Code of the project where the issue issue in JIRA. "
                     "It is usually an uppercase string code (we will uppercase them for you). E.g: AT, MCSW, PAN\n"
                 ),
             },
             {
                 "type": "input",
                 "name": "issue_number",
+                "filter": parse_number,
                 "message": (
-                    "JIRA Issue Number. The number that follows the project code."
+                    "JIRA Issue Number. The number that follows the project code. "
                     "E.g: EXAMPLE-123 will be issue number 123 in project EXAMPLE\n"
                 ),
             },
@@ -125,10 +142,10 @@ class ConventionalCommitsCz(BaseCommitizen):
                 ),
             },
             {
-                "type": "confirm",
-                "message": "Is this a BREAKING CHANGE? Correlates with MAJOR in SemVer",
+                "type": "input",
+                "message": "Is this a BREAKING CHANGE? Correlates with MAJOR in SemVer (y/N)",
                 "name": "is_breaking_change",
-                "default": False,
+                "filter": parse_confirm,
             },
             {
                 "type": "input",
@@ -164,6 +181,10 @@ class ConventionalCommitsCz(BaseCommitizen):
             body = f"BREAKING CHANGE: {body}"
         if jira_project_code:
             issue_number = answers["issue_number"]
+
+            if not issue_number:
+                raise NeedIssueCode("Issue number is required when providing the JIRA project code")
+            
             subject = f"{jira_project_code.upper()}-{issue_number} | {subject}"
         if body:
             body = f"\n\n{body}"
