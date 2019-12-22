@@ -81,6 +81,13 @@ class ConventionalCommitsCz(BaseCommitizen):
                         ),
                     },
                     {
+                        "value": "chore",
+                        "name": (
+                            "chore: A code change that doesn't impact end users "
+                            "(adding a wrapper function, defining constants...)"
+                        ),
+                    },
+                    {
                         "value": "perf",
                         "name": "perf: A code change that improves performance",
                     },
